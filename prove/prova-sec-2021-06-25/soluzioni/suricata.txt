@@ -1,0 +1,27 @@
+
+1) 
+
+alert icmp any any -> $HOME_NET any (msg:"Ping detected"; itype:8; sid:1000477; rev:1;)
+
+in /etc/suricata/suricata.yaml è stata modificata la variabile HOME_NET in
+HOME_NET: "[192.168.56.0/24]"
+
+
+2) 
+
+alert dns any any -> any any (msg:"DNS Query for evilcorp.com; dns_query; content:"evilcorp.com"; sid:1234; rev:1;)
+e/o
+alert ip any any -> evilcorp.com any (msg:"SURICATA TRAFFIC-ID: evilcorp.com"; sid:300000001; rev:1;)
+
+
+3) 
+
+gli Ip in gioco erano 192.168.56.1 e 192.168.56.3, la porta la 6666
+
+quindi la regola per loggare il traffico era semplicemente
+alert tcp 192.168.56.1 any -> 192.168.56.3 6666 (msg:"Flag Detected"; sid:30000006; rev 1;)
+
+Avendo abilitato l'opzione payload-printable in /etc/suricata/suricata.yaml si ottiene in /var/log/suricata/eve.json si ha il payload dei pacchetti catturati; gli eve log devono esser esaminati per recupeare la flag che era spezzettata su più pacchetti, con risultato finale
+
+SEC{this_is_the_first_part_this_is_the_second_part_third_part}
+

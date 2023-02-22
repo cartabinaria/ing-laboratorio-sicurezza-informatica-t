@@ -1,0 +1,26 @@
+Unzippare il file con l'eseguibile compilato
+
+L'eseguibile bof ha bisogno dei permessi di esecuzione.
+
+$ chmod +x ./bof
+
+Nella cartella è presente anche lo shellcode.
+
+Compito dello studente è sfruttare il buffer overflow
+in modo tale da eseguire lo shellcode fornito nella consegna.
+
+Ricordarsi, se non è già stato fatto di disabilitare ASLR con il comando:
+$ echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
+
+Lo shellcode esegue una shell, lo studente dovrà quindi consegnare:
+
+- Una descrizione dei passaggi eseguiti per ricavare l'overflow che
+permette di sovrascrivere l'indirizzo di ritorno E relativo screenshot
+(dell'esecuzione di gdb da cui si veda l'indirizzo sovrascritto)
+
+- Una descrizione di come ha composto il payload, incluso il payload
+finale E relativo screenshot
+
+- Screenshot finale che include esecuzione payload con relativa shell.
+
+

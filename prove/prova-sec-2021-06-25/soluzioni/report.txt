@@ -1,0 +1,21 @@
+1- Per prima cosa riesco a trovare la directory corrente digitando come parametro della GET ".", che mi fa comprendere di trovarmi nella directory "/tmp" tramite la seguente eccezione python:
+
+Traceback (most recent call last):
+  File "web.py", line 41, in do_GET
+    content = (open(os.path.abspath(final), "rb") if not "://" in final else urllib.urlopen(final)).read()
+IOError: [Errno 21] Is a directory: '/tmp'
+
+2- Successivamente provo a inserire "../" per andare alla radice, ma ricevo l'errore "Errore! Non e' possibile invocare un path che inizia per ../, e' sicuro sia un path traversal?"
+
+3- Per aggirare questo controllo inserisco all'inizio la directory corrente "." ed eseguo il path
+traversal a partire da quella, in modo che la stringa diventi "./../", a questo punto mi troverò sulla radice
+
+4- Aggiungo il file interessato, il parametro sarà il seguente "./../etc/passwd"
+
+5- Mi viene restituito l'errore "Errore! Il path non puo' terminare per "wd", cosa puo' usare per scavalcare questo +wild+ filtro?"
+
+6- Inserisco un filtro wildcard alla fine dell'espressione, in modo che il parametro diventi  "./../etc/passw*"
+
+7- Funziona, ma riporta il contenuto di due file. Si può notare in qualsiasi sistema Linux infatti che è presente /etc/passwd- che è un backup di passwd. Una soluzione più selettiva è:
+
+URL Finale: http://localhost:8000/?path=./../etc/passw?
