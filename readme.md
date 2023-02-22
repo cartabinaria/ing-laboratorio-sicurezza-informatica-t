@@ -1,14 +1,14 @@
-# \<Insegnamento\>
+# Laboratorio di Sicurezza Informatica
 
-Una raccolta di risorse per l'insegnamento di \<Insegnamento\> del Corso di
-Laurea in Informatica.
+Una raccolta di risorse per l'insegnamento di Laboratorio di Sicurezza
+Informatica (B0833) del Corso di Laurea in Ingegneria informatica.
 
 ## Presentazione
 
-[Questo sito](https://csunibo.github.io/<insegnamento>) elenca staticamente
-i contenuti della raccolta. Qui, documenti e presentazioni con estensione
-`.md`, `.tex`, `.doc`, `.docx`, `.ppt` o `.pptx` sono automaticamente
-convertiti in formato PDF.
+[Questo sito](https://csunibo.github.io/laboratorio-sicurezza-informatica)
+elenca staticamente i contenuti della raccolta. Qui, documenti e
+presentazioni con estensione `.md`, `.tex`, `.doc`, `.docx`, `.ppt` o
+`.pptx` sono automaticamente convertiti in formato PDF.
 
 ## Contribuire
 
