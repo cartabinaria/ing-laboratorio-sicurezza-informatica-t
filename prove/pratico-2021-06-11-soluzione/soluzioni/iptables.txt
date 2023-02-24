@@ -1,0 +1,35 @@
+Utilizzo l'opzione -A in tutte le regole per fare in modo che vengano inserite una in seguito all'altra in ordine
+
+1) Consentire qualsiasi traffico sull'interfaccia di loopback
+
+	iptables -A INPUT -i lo -j ACCEPT
+	iptables -A OUTPUT -o lo -j ACCEPT
+
+
+2) Consentire il traffico delle connessioni HTTP entranti
+
+	iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+	
+Noto che tra i requisiti non c'è alcun blocco generale dei pacchetti uscenti, quindi non serve abiilitare il passaggio delle risposte nella catena di OUTPUT
+
+
+3) Consentire connessioni SSH uscenti verso la rete host-only 192.168.56.0/24 
+
+Noto che tra i requisiti non c'è alcun blocco generale dei pacchetti uscenti, quindi non serve abiilitare il passaggio dei pacchetti uscenti nella catena di OUTPUT. In INPUT sono valide solo le risposte a pacchetti originati da me
+
+	iptables -A INPUT -p tcp -s 192.168.56.0/24 --sport 22 -m state --state ESTABLISHED -j ACCEPT
+ 
+4) Bloccare l'inoltro del traffico proveniente dalla rete host-only verso altre destinazioni
+
+	iptables -A FORWARD -s 192.168.56.0/24 ! -d 192.168.56.0/24 -j DROP	
+
+
+5) Consentire la risoluzione dei nomi DNS
+
+	iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+	iptables -A INPUT -p udp --sport 53 -m state --state ESTABLISHED -j ACCEPT
+
+
+6) Infine bloccare tutto il traffico in entrata
+
+	iptables -P INPUT DROP

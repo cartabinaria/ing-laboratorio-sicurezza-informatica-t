@@ -1,0 +1,26 @@
+L'esercitazione di iptables consiste nel creare una serie di regole.
+Scrivete nel file di testo i comandi che si devono impartire per 
+ottenere i risultati richiesti. Si consiglia di leggere tutta la lista
+per determinare correttamente i requisiti.
+
+Le regole saranno testate per verificarne la correttezza.
+
+Le regole devono essere applicate nell'ordine in cui vengono proposte.
+
+Partiamo da un flush delle regole esistenti con:
+iptables -F
+
+
+
+1) Consentire qualsiasi traffico sull'interfaccia di loopback
+
+2) Consentire il traffico delle connessioni HTTP entranti
+
+3) Consentire connessioni SSH uscenti verso la rete host-only 192.168.56.0/24
+
+4) Bloccare l'inoltro del traffico proveniente dalla rete host-only verso altre destinazioni
+
+5) Consentire la risoluzione dei nomi DNS
+
+6) Infine bloccare tutto il traffico in entrata
+

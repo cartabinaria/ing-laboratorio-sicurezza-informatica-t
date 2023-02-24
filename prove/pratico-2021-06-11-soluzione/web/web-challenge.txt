@@ -1,0 +1,27 @@
+Unzippare l'archivio dei pacchetti di installazione docker
+
+$ unzip docker_packages.zip
+
+Installarli con
+
+$ sudo dpkg -i *.deb
+
+Diventiamo root
+
+$ sudo -s
+
+A questo punto lanciamo il container, se tutto va correttamente
+dovrebbe restituire un warning su python-xmlm ma tutto è avviato 
+correttamente
+
+# docker build . -t seclab && docker run -p 8000:8000 seclab 
+
+Collegandovi col browser all'indirizzo
+
+http://localhost:8000
+
+Dovreste avere la challenge visibile, con la relativa descrizione
+- NON si può usare sqlmap
+
+
+

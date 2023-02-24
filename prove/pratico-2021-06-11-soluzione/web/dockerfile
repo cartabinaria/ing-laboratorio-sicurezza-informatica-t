@@ -1,0 +1,17 @@
+# Sec Lab Web Challenges Container
+#
+
+FROM alpine:3.11
+MAINTAINER  Andrea Melis <a.melis@unibo.it>
+
+RUN apk --no-cache add python py-lxml \
+	&& rm -rf /var/cache/apk/* 
+
+WORKDIR /tmp
+RUN wget https://gitlab.com/wild_boar/labsec_course/-/raw/master/web_challenges/chal.py
+
+#ADD chal.py /chal.py
+
+EXPOSE 8000
+
+CMD ["python", "chal.py"]
